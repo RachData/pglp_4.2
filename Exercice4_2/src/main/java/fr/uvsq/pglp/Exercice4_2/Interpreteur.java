@@ -2,7 +2,7 @@ package fr.uvsq.pglp.Exercice4_2;
 
 import java.util.HashMap;
 
-public class Interpretareur {
+public class Interpreteur {
 	
 	 private final HashMap<String, Commands> commandMap = new HashMap<>();
 	 
