@@ -3,11 +3,11 @@ package fr.uvsq.pglp.Exercice4_2;
 public class Generic {
 	
 	public void quit() {
-		System.out.println("execution de la commande Quit");
+		System.exit(0);
 	}
 	
 	public void undo() {
-		System.out.println("execution de la commande Undo");
+		System.out.println("Command Undo");
 	}
 
 }

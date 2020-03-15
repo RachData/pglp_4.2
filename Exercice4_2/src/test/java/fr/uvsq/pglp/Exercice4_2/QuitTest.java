@@ -16,7 +16,8 @@ public class QuitTest {
 		Interpreteur commanGenrric = new Interpreteur();
 		commanGenrric.register("quit", quitprog);
 		
-		commanGenrric.execute("quit");;
+		commanGenrric.execute("quit");
+		
 		
 	}
 

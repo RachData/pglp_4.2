@@ -2,12 +2,16 @@ package fr.uvsq.pglp.Exercice4_2;
 
 import static org.junit.Assert.*;
 
+import java.util.Stack;
+
 import org.junit.Test;
 
 public class UndoTest {
 
 	@Test
 	public void test() {
+		
+		
 		Generic genericProg=new Generic();
 		
 		genericCommand undoprog = new Undo(genericProg);
