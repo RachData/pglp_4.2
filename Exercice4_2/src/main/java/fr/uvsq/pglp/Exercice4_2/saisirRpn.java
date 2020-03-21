@@ -1,5 +1,6 @@
 package fr.uvsq.pglp.Exercice4_2;
 
+import java.util.EmptyStackException;
 import java.util.Scanner;
 
 public class saisirRpn {
@@ -27,6 +28,8 @@ public class saisirRpn {
 					Moteur.apply(this.saisie);
 				} catch (IllegalStateException e) {
 					// TODO: handle exception
+				}catch(EmptyStackException e) {
+					
 				}
 				
 			}else{

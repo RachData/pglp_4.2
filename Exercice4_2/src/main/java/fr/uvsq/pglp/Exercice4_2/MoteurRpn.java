@@ -1,5 +1,6 @@
 package fr.uvsq.pglp.Exercice4_2;
 
+import java.util.EmptyStackException;
 import java.util.Stack;
 
 public class MoteurRpn {
@@ -51,8 +52,15 @@ public class MoteurRpn {
      * @param operande
      */
     public double depiler(){
-
-		return pile.pop();
+    	
+    		if(this.pile.isEmpty()) {
+    			System.out.println("Ajoutez une operande de plus ..");
+   	    		throw new EmptyStackException() ;
+    		}
+    		else
+    		{
+    			return pile.pop();
+    		}
 		
     }
     

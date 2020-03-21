@@ -1,5 +1,6 @@
 package fr.uvsq.pglp.Exercice4_2;
 
+import java.util.EmptyStackException;
 import java.util.Stack;
 
 public class Plus implements SpecificCommands {
@@ -14,9 +15,23 @@ public class Plus implements SpecificCommands {
 	@Override
 	public void apply() {
 		double a=0,b = 0;
-		a= moteur.depiler();
-    	b= moteur.depiler();
-		moteur.enregistrer(this.operation(a, b));
+		int retour=0;
+		try {
+			a= moteur.depiler();
+			retour++;
+		} catch (EmptyStackException e) {
+			// TODO: handle exception
+			
+		}
+		
+		try {
+	    	b= moteur.depiler();
+			moteur.enregistrer(this.operation(a, b));
+		} catch (EmptyStackException e) {
+			// TODO: handle exception
+			if(retour==1)
+				moteur.enregistrer(a);
+		}
 		
 	}
 

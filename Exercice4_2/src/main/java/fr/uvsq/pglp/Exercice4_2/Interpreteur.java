@@ -1,5 +1,6 @@
 package fr.uvsq.pglp.Exercice4_2;
 
+import java.util.EmptyStackException;
 import java.util.HashMap;
 import java.util.Stack;
 
@@ -17,12 +18,14 @@ public class Interpreteur {
 	        	if (command == null) {
 		        	System.out.println("erreur de commande ...");
 		            throw new IllegalStateException("no command registered for " + commandName);
-		        }
-			} catch (IllegalStateException e) {
+		        }	 
+	        command.apply();
+	        
+	        } catch (IllegalStateException e) {
+				
+			}catch(EmptyStackException e) {
 				
 			}
-	 
-	        command.apply();
 	}
 
 }

@@ -1,5 +1,7 @@
 package fr.uvsq.pglp.Exercice4_2;
 
+import java.util.EmptyStackException;
+
 public class Moins implements SpecificCommands{
 	
 	private final Specific calcul; 
@@ -12,10 +14,25 @@ public class Moins implements SpecificCommands{
 
 	@Override
 	public void apply() {
+		
 		double a=0,b = 0;
-		a= moteur.depiler();
-    	b= moteur.depiler();
-		moteur.enregistrer(this.operation(a, b));
+		int retour=0;
+		try {
+			a= moteur.depiler();
+			retour++;
+		} catch (EmptyStackException e) {
+			// TODO: handle exception
+			
+		}
+		
+		try {
+	    	b= moteur.depiler();
+			moteur.enregistrer(this.operation(a, b));
+		} catch (EmptyStackException e) {
+			// TODO: handle exception
+			if(retour==1)
+				moteur.enregistrer(a);
+		}
 		
 	}
 
