@@ -12,11 +12,11 @@ public class MoteurRpnTest {
 		moteur.initMoteurRpn();
 		moteur.enregistrer(5);
 		moteur.enregistrer(5);
-		moteur.apply('+');
+		moteur.apply("+");
 		assertTrue(moteur.depiler()==10);
 		moteur.enregistrer(5);
 		moteur.enregistrer(5);
-		moteur.apply('-');
+		moteur.apply("-");
 		assertTrue(moteur.depiler()==0);
 	}
 

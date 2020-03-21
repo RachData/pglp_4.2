@@ -5,10 +5,6 @@ import java.util.Stack;
 
 public class Interpreteur {
 	
-	private int a,b;
-	
-	private Stack <Double> pile =new Stack<>();
-	
 	private final HashMap<String, Commands> commandMap = new HashMap<>();
 	 
 	public void register(String commandName, Commands command) {
@@ -17,10 +13,15 @@ public class Interpreteur {
 	    
 	public void execute(String commandName) {
 	        Commands command = commandMap.get(commandName);
-	        if (command == null) {
-	            throw new IllegalStateException("no command registered for " + commandName);
-	        }
-	        //if (commandName.contentEquals("undo"))
+	        try {
+	        	if (command == null) {
+		        	System.out.println("erreur de commande ...");
+		            throw new IllegalStateException("no command registered for " + commandName);
+		        }
+			} catch (IllegalStateException e) {
+				
+			}
+	 
 	        command.apply();
 	}
 

@@ -13,10 +13,10 @@ public class QuitTest {
 		
 		genericCommand quitprog = new Quit(genericProg);
 		
-		Interpreteur commanGenrric = new Interpreteur();
-		commanGenrric.register("quit", quitprog);
+		Interpreteur interprete = new Interpreteur();
+		interprete.register("quit", quitprog);
 		
-		commanGenrric.execute("quit");
+		interprete.execute("quit");
 		
 		
 	}

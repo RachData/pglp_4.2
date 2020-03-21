@@ -7,25 +7,33 @@ public class MoteurRpn {
 	/**
 	 * La Pile qui va stocke les operandes
 	 */
-    public Stack <Double> pile =new Stack<>();
+    private Stack <Double> pile =new Stack<>();
 	
     /**
-     * les comme
+     * les commandes specifiques pour les operations
      */
 	private Specific specificProg=new Specific();
 	private SpecificCommands calculplus = new Plus(specificProg,this);
 	private SpecificCommands calculmoins = new Moins(specificProg,this);
 	
+	/**
+	 * les commandes generiques
+	 */
+	private Generic genericProg= new Generic();
+	private genericCommand commandquit= new Quit(genericProg);
+	private genericCommand commandundo= new Undo(genericProg, this);
+	
 	private Interpreteur interpre = new Interpreteur();
 	
 	
-	public MoteurRpn() {
-		
-	}
-	
+	/**
+	 * Initialisation de l'interpretateur
+	 */
 	public void initMoteurRpn() {
 		interpre.register("+", calculplus);
 		interpre.register("-", calculmoins);
+		interpre.register("quit", commandquit);
+		interpre.register("undo", commandundo);
 	}
 	
     
@@ -45,35 +53,33 @@ public class MoteurRpn {
     public double depiler(){
 
 		return pile.pop();
-
-}
+		
+    }
     
-	/**
-	 * Methode charger d'effectuer les calcules en fontion de l'operateur recu
-	 * @param symbole : operateur saisie par l'utilisateur
-	 * @return Renvoie le Resultat de l'operation
-	 * @throws ClasseException : Exception qui g�re la division par zero
-	 * @throws PilevideException : Exception qui g�re si la pile est vide
-	 * @throws ManqueOperandeException : Exception qui g�re le manque d'operande 
-	 * pour effectuer l'operation
-	 */
-    public void apply  (char symbole)
+    /**
+     * Methode qui execute la commande correspond passer
+     * @param commande
+     */
+    public void apply  (String commande)
      {
-    	
-			switch(symbole)
-			 {
-			    case '+': 
-			        interpre.execute("+");
-			        break;
-		         //return 0;
-			         
-			    case '-':
-			    	//this.enregistrer(Operation.MULT.eval(b, a));
-			    	interpre.execute("-");
-			    	
-
-			 
-			 }
+    	try {
+        	interpre.execute(commande);
+    	}catch (IllegalStateException e) {
+			// TODO: handle exception
+		}
      }
+    
+    /**
+     * Methode d'affichage de l'expression courante 
+     */
+    public void affiche() {
+    	System.out.print("L'expression courante est:\t");
+    	if(!this.pile.isEmpty()) {
+    		for(int i=0;i< this.pile.size();i++){
+    			System.out.print(this.pile.elementAt(i)+"\t");
+    		}	
+    	}
+    	System.out.println("");
+    }
 
 }
