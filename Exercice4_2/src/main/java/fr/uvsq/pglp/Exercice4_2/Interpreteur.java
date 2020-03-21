@@ -20,7 +20,7 @@ public class Interpreteur {
 	        if (command == null) {
 	            throw new IllegalStateException("no command registered for " + commandName);
 	        }
-	        if (commandName.contentEquals("undo"))
+	        //if (commandName.contentEquals("undo"))
 	        command.apply();
 	}
 
