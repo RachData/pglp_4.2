@@ -10,16 +10,12 @@ public class UndoTest {
 
 	@Test
 	public void test() {
-		
-		
-		Generic genericProg=new Generic();
-		
-		genericCommand undoprog = new Undo(genericProg);
-		
-		Interpreteur commanGenrric = new Interpreteur();
-		commanGenrric.register("undo", undoprog);
-		
-		commanGenrric.execute("undo");
+		MoteurRpn moteur = new MoteurRpn();
+		moteur.initMoteurRpn();
+		moteur.enregistrer(5);
+		moteur.enregistrer(5);		
+		moteur.apply("undo");
+
 	}
 
 }
