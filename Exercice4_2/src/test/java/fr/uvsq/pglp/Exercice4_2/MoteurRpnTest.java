@@ -18,6 +18,14 @@ public class MoteurRpnTest {
 		moteur.enregistrer(5);
 		moteur.apply("-");
 		assertTrue(moteur.depiler()==0);
+		moteur.enregistrer(5);
+		moteur.enregistrer(5);
+		moteur.apply("*");
+		assertTrue(moteur.depiler()==25);
+		moteur.enregistrer(5);
+		moteur.enregistrer(5);
+		moteur.apply("/");
+		assertTrue(moteur.depiler()==1);
 		
 	}
 

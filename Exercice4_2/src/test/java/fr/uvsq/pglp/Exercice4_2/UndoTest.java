@@ -13,8 +13,12 @@ public class UndoTest {
 		MoteurRpn moteur = new MoteurRpn();
 		moteur.initMoteurRpn();
 		moteur.enregistrer(5);
-		moteur.enregistrer(5);		
+		moteur.enregistrer(5);
+		moteur.affiche();
+		moteur.apply("+");
+		moteur.affiche();
 		moteur.apply("undo");
+		moteur.affiche();
 
 	}
 
