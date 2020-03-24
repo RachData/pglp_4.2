@@ -11,9 +11,6 @@ public class saisirRpn {
 	
 	/**
 	 * Fonction d'interaction avec l'utilisateur et qui invoque le Moteur RPN
-	 * @throws ClasseException : Exception qui g�re la division par zero
-	 * @throws PilevideException : Exception qui g�re la pilevide
-	 * @throws ManqueOperandeException : Exception qui g�re le manque 
 	 * d'oprande pour effectuer un calcul
 	 * 
 	 */
@@ -24,14 +21,7 @@ public class saisirRpn {
 		do{
 			this.saisie=rep.nextLine();
 			if(verifisaisie(this.saisie)==false){
-				try {
 					Moteur.apply(this.saisie);
-				} catch (IllegalStateException e) {
-					// TODO: handle exception
-				}catch(EmptyStackException e) {
-					
-				}
-				
 			}else{
 			
 				Moteur.enregistrer(Double.parseDouble(saisie));

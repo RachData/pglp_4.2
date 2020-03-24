@@ -9,6 +9,7 @@ public class MoteurRpn {
 	 * La Pile qui va stocke les operandes
 	 */
     private Stack <Double> pile =new Stack<>();
+    public Stack <Double> history =new Stack<>();
 	
     /**
      * les commandes specifiques pour les operations
@@ -16,14 +17,19 @@ public class MoteurRpn {
 	private Specific specificProg=new Specific();
 	private SpecificCommands calculplus = new Plus(specificProg,this);
 	private SpecificCommands calculmoins = new Moins(specificProg,this);
+	private SpecificCommands calculmult = new Mult(specificProg,this);
+	private SpecificCommands calculdiv = new Div(specificProg,this);
 	
 	/**
 	 * les commandes generiques
 	 */
 	private Generic genericProg= new Generic();
 	private genericCommand commandquit= new Quit(genericProg);
-	private genericCommand commandundo= new Undo(genericProg, this);
+	private genericCommand commandundo= new Undo(genericProg,this.history, this);
 	
+	/**
+	 * l'interpreteur de commande
+	 */
 	private Interpreteur interpre = new Interpreteur();
 	
 	
@@ -31,10 +37,15 @@ public class MoteurRpn {
 	 * Initialisation de l'interpretateur
 	 */
 	public void initMoteurRpn() {
+		
 		interpre.register("+", calculplus);
 		interpre.register("-", calculmoins);
+		interpre.register("*", calculmult);
+		interpre.register("/", calculdiv);
+		
 		interpre.register("quit", commandquit);
 		interpre.register("undo", commandundo);
+
 	}
 	
     
@@ -54,11 +65,11 @@ public class MoteurRpn {
     public double depiler(){
     	
     		if(this.pile.isEmpty()) {
-    			System.out.println("Ajoutez une operande de plus ..");
    	    		throw new EmptyStackException() ;
     		}
     		else
     		{
+    			this.history.push(pile.peek());
     			return pile.pop();
     		}
 		
@@ -70,11 +81,7 @@ public class MoteurRpn {
      */
     public void apply  (String commande)
      {
-    	try {
         	interpre.execute(commande);
-    	}catch (IllegalStateException e) {
-			// TODO: handle exception
-		}
      }
     
     /**

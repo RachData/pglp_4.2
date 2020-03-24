@@ -15,21 +15,16 @@ public class Plus implements SpecificCommands {
 	@Override
 	public void apply() {
 		double a=0,b = 0;
-		int retour=0;
+		int vide=0;//variable permettant de verifier si la pile est ou contient plus d'un element
 		try {
 			a= moteur.depiler();
-			retour++;
-		} catch (EmptyStackException e) {
-			// TODO: handle exception
-			
-		}
-		
-		try {
+			vide++;
 	    	b= moteur.depiler();
-			moteur.enregistrer(this.operation(a, b));
+			moteur.enregistrer(this.operation(b, a));
 		} catch (EmptyStackException e) {
 			// TODO: handle exception
-			if(retour==1)
+			System.out.println("Ajoutez une operande ...");
+			if(vide==1)
 				moteur.enregistrer(a);
 		}
 		
