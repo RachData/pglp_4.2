@@ -15,7 +15,7 @@ public class Plus implements SpecificCommands {
 	@Override
 	public void apply() {
 		double a=0,b = 0;
-		int vide=0;//variable permettant de verifier si la pile est ou contient plus d'un element
+		int vide=0;//variable permettant de verifier si la pile est vide ou contient plus d'un element
 		try {
 			a= moteur.depiler();
 			vide++;
